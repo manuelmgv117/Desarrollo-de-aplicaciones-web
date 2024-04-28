@@ -1,0 +1,17 @@
+{  
+    "Routes": [
+      {
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "dummyjson.com",
+            "Port": 443
+          }
+        ],
+        "DownstreamPathTemplate": "/products",
+        "DownstreamScheme": "https",
+        "UpstreamHttpMethod": [],
+        "UpstreamPathTemplate": "/producto_falso"
+      }
+    ],
+    "GlobalConfiguration": { "BaseUrl": "https://localhost:7225" }
+  }
