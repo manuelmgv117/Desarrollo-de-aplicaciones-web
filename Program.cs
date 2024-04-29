@@ -1,5 +1,4 @@
-using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
+using Productos.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +9,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Configuration.AddJsonFile("ocelot.json",optional:false,reloadOnChange:true);
-builder.Services.AddOcelot();
-var app = builder.Build();
+Data_Context ctx = new Data_Context();
+ctx.Database.EnsureCreated();
 
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -21,7 +20,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseOcelot().Wait();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -29,4 +28,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
